@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubirica mea❤️</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: pink;
+        }
+        .container {
+            margin-top: 20vh;
+        }
+        h1 {
+            color: red;
+            font-size: 2.5em;
+        }
+        .btn {
+            font-size: 1.5em;
+            padding: 15px 25px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .yes {
+            background-color: red;
+            color: white;
+        }
+        .no {
+            background-color: gray;
+            color: white;
+            transition: all 0.5s ease;
+        }
+        .hidden {
+            display: none;
+        }
+        .hearts {
+            font-size: 3em;
+            display: none;
+        }
+        .confetti {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .confetti span {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: red;
+            opacity: 0.7;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            from {
+                transform: translateY(-10vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        .surprise-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 60%;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+            position: relative;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my Valentine? ❤️🐰</h1>
+        <button class="btn yes" onclick="showLove()">Yes</button>
+        <button class="btn no" onclick="shrinkNo(this)">No</button>
+        <div class="hidden" id="surprise">
+            <div class="surprise-card">
+                <h2>Te iubesc💖</h2>
+                <p>Bebe, ti-am pregatit ceva... daca apesi pe butonul de mai jos, ai o surpriza acolo.</p>
+                <button class="btn yes" onclick="showExtraSurprise()">Surpriza</button>
+            </div>
+            <div class="hidden surprise-card" id="extra-surprise">
+                <h2>In ultima perioada, timpul a fost limitat, dar tu esti o prioritate si am incercat sa-ti scriu ceva dragut.</h2>
+                <p>Vreau sa incep prin a-ti spune ca te iubesc enorm si chiar imi doresc sa imi petrec restul vietii alaturi de tine. 
+                    Cum deja stii, nu prea am inclinatie poetica, asa ca sa nu te superi pe mine daca nu sunt in stare sa-mi exprim sentimentele. 
+                    Nu prea inteleg eu aceasta zi de 14, dar am sa ma bucur de o zi cu tine, doar noi doi, asa ca sunt multumit. 
+                    Imi pare rau ca uneori te mai supar si uit sa-ti spun ce fac, nu este intentionat, doar ca din dorinta de a termina totul mai repede si de a fi cat mai productiv posibil, omit sa-ti mai scriu. 
+                    Sa stii ca esti cea mai importanta pentru mine si faptul ca uit sa-ti spun ca voi sta cate 5 ore sa ma joc cu baietii odata la doua luni nu inseamna ca nu am chef sa vorbesc cu tine. 
+                    Te rog sa nu te superi pe mine, dar in seara in care iti scriu asta, ti-am spus ca ma duc sa ma culc, dar de fapt am pregatit tot ce era nevoie ca tu sa poti vedea si accesa aceasta pagina de pe telefonul tau. Nu este usor si aveam nevoie de tot timpul disponibil, 
+                    mai ales ca te-am suparat putin. Am gandit toata aceasta pagina pentru telefon, deci clar acest mic paragraf pe care il scriu acum va fi putin enervant de citit, dar nu am alta varianta. Vreau sa stii ca am nevoie de iubire permanenta si tot ce imi doresc este sa ma pot lipi de tine si sa te simt. 
+                    Stiu ca este din ce in ce mai greu sa facem tot ce ne dorim, dar traiesc cu placuta impresie ca intr-o zi o sa avem locul nostru, unde o sa facem ce vrem si o sa stam amandoi cat vrem noi. Stiu ca am promis ca voi updata site-ul cu sosoaia, dar chiar nu am avut timpul necesar pentru asta, mai ales ca nu este o munca usoara. 
+                    Nu mai am idei, dar vreau sa te asigur si sa nu uiti, te rog, te iubesc enorm si nu vreau pe nimeni altcineva. Esti tot ce imi doream si ma faci fericit. Multumesc. Te iubesc!
+                ❤️</p>
+                <a href="https://fan2829.github.io/TreiLuniCuSosoaia.github.io/" target="_blank">
+                    <button class="btn yes">Sosoaia❤️</button>
+                </a>
+                <div class="hearts">❤️❤️❤️</div>
+            </div>
+        </div>
+    </div>
+    <div class="confetti" id="confetti"></div>
+    <script>
+        let noClickCount = 0;
+        function showLove() {
+            document.getElementById('surprise').style.display = 'block';
+            document.querySelector('.surprise-card').style.display = 'block';
+            startConfetti();
+        }
+        function showExtraSurprise() {
+            document.getElementById('extra-surprise').style.display = 'block';
+            document.getElementById('extra-surprise').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        function shrinkNo(button) {
+            noClickCount++;
+            if (noClickCount === 1) {
+                button.innerText = 'Ma mai iubesti?';
+            } else if (noClickCount === 2) {
+                button.innerText = 'Sunt suparat... Sigur nu vrei?';
+            } else {
+                button.innerText = 'Yes';
+                button.classList.remove('no');
+                button.classList.add('yes');
+                button.onclick = showLove;
+            }
+        }
+        function startConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            for (let i = 0; i < 100; i++) {
+                let confetti = document.createElement('span');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confettiContainer.appendChild(confetti);
+            }
+            setTimeout(() => confettiContainer.innerHTML = '', 5000);
+        }
+    </script>
+</body>
+</html>
